@@ -10,6 +10,8 @@ $loader->addNamespace('Helpers', 'Helpers');
 $loader->addNamespace('Controllers', 'Controllers');
 $loader->addNamespace('Models', 'Models');
 $loader->addNamespace('League\Plates', 'Vendor/Plates/Plates/src');
+$loader->addNamespace('Config', 'Config');
+
 
 use Controllers\MainController; // 🔹 On importe notre contrôleur
 // Création du contrôleur principal
