@@ -1,4 +1,4 @@
-Projet Web PHP – Gestion de Collection Mihoyo
+# **Projet Web PHP – Gestion de Collection Mihoyo**
 
 Ce projet est une application web développée en PHP natif, utilisant PlatesPHP comme moteur de template, permettant de gérer :
 
@@ -12,11 +12,11 @@ Un système de logs (fichiers .log)
 
 Une interface avec styles visuels avancés
 
-📦 1. Prérequis
+## _1. Prérequis_
 
 Pour faire fonctionner le projet sur un autre ordinateur, il faut installer :
 
-🖥Logiciels nécessaires
+### Logiciels nécessaires :
 
 WAMP, XAMPP ou Laragon
 → avec PHP 8.x recommandé
@@ -26,14 +26,13 @@ PHPStorm ou VSCode
 
 Un navigateur moderne (Chrome / Firefox)
 
-📁 Organisation d’arborescence
+### Organisation d’arborescence
 
 Après installation, les fichiers devront être placés dans le dossier :
 
 C:\wamp64\www\ProjetWeb\ ou équivalent selon votre installation.
 
-⚙️ 2. Installation du projet
-📂 Étape 1 – Copier les fichiers
+## 2. Installation du projet - Étape 1 Copier les fichiers
 
 Télécharger/Cloner le projet
 
@@ -42,8 +41,7 @@ Copier le dossier complet dans : C:\wamp64\www\ProjetWeb\
 
 Ouvrir ce dossier avec PHPStorm.
 
-🗃️ 3. Base de Données
-Étape 2 – Création de la base
+## 3. Base de Données - Étape 2 Création de la base
 
 Lancer WAMP (icône verte)
 
@@ -143,7 +141,8 @@ INSERT INTO personnage (id, name, element, unitclass, origin, rarity, url_img) V
 ('1', 'Venti', 6, 2, 4, 5, 'https://i2.wp.com/images.genshin-builds.com/genshin/characters/venti/image.png?strip=all&quality=100&w=160'),
 ('2', 'Escoffier', 3, 4, 5, 5, 'https://i2.wp.com/images.genshin-builds.com/genshin/characters/escoffier/image.png?strip=all&quality=100&w=160');
 ```
-🔧 4. Configuration PHP
+
+## 4. Configuration PHP
 
 Le fichier de configuration se trouve dans :
 
@@ -158,7 +157,7 @@ user = "root"
 pass = ""
 ```
 
-▶️ 5. Lancer l'application
+## 5. Lancer l'application
 
 Vérifier que WAMP est en vert
 
@@ -170,7 +169,7 @@ L’application s’ouvre à l’adresse :
 
 http://localhost/ProjetWeb/
 
-🔐 6. Identifiants inclus
+## 6. Identifiants inclus
 
 Rôle : Utilisateur, Admin
 
