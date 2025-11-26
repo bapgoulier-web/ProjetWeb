@@ -52,6 +52,7 @@ Ouvrir DataGrip
 Aller dans SQL
 Copier et executer ce code : 
 
+```
 CREATE DATABASE projetweb;
 USE projetweb;
 
@@ -141,8 +142,7 @@ FOREIGN KEY (id_perso) REFERENCES personnage(id)
 INSERT INTO personnage (id, name, element, unitclass, origin, rarity, url_img) VALUES
 ('1', 'Venti', 6, 2, 4, 5, 'https://i2.wp.com/images.genshin-builds.com/genshin/characters/venti/image.png?strip=all&quality=100&w=160'),
 ('2', 'Escoffier', 3, 4, 5, 5, 'https://i2.wp.com/images.genshin-builds.com/genshin/characters/escoffier/image.png?strip=all&quality=100&w=160');
-
-
+```
 🔧 4. Configuration PHP
 
 Le fichier de configuration se trouve dans :
@@ -151,11 +151,12 @@ Config/dev.ini
 
 
 Contenu recommandé :
-
+```
 [DB]
 dsn = "mysql:host=localhost;dbname=projetweb;charset=utf8mb4"
 user = "root"
 pass = ""
+```
 
 ▶️ 5. Lancer l'application
 
