@@ -10,12 +10,20 @@ class RouteUpdatePerso extends Route
 {
     protected $controller;
 
+    /**
+     * Constructeur : initialise la route et le contrôleur associé.
+     */
     public function __construct(string $action, PersoController $controller)
     {
         parent::__construct($action, $controller);
         $this->controller = $controller;
     }
 
+    /**
+     * Gère la requête GET :
+     * - récupère l’ID du personnage
+     * - affiche le formulaire d’édition
+     */
     public function get(array $params = []): void
     {
         try {
@@ -26,6 +34,12 @@ class RouteUpdatePerso extends Route
         }
     }
 
+    /**
+     * Gère la requête POST :
+     * - récupère les données du formulaire
+     * - prépare les données du personnage à modifier
+     * - appelle la méthode d’update dans le contrôleur
+     */
     public function post(array $params = []): void
     {
         try {

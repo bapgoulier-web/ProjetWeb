@@ -10,6 +10,9 @@ class BasePDODAO
 {
     private static ?PDO $db = null;
 
+    /**
+     * Retourne l’instance PDO (singleton) et la crée si nécessaire.
+     */
     protected static function getDB(): PDO
     {
         if (self::$db === null) {
@@ -22,6 +25,9 @@ class BasePDODAO
         return self::$db;
     }
 
+    /**
+     * Exécute une requête SQL préparée et renvoie le PDOStatement.
+     */
     protected function execRequest(string $sql, array $params = null): PDOStatement|false
     {
         $etat = self::getDB()->prepare($sql);
@@ -29,5 +35,3 @@ class BasePDODAO
         return $etat;
     }
 }
-
-

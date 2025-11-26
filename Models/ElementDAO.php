@@ -8,7 +8,8 @@ require_once 'Element.php';
 class ElementDAO extends BasePdoDAO
 {
     /**
-     * Récupère tous les éléments
+     * Récupère tous les éléments depuis la base de données
+     * et renvoie un tableau d’objets Element hydratés.
      */
     public function getAll(): array
     {
@@ -27,7 +28,8 @@ class ElementDAO extends BasePdoDAO
     }
 
     /**
-     * Récupère un élément par son ID
+     * Récupère un élément par son identifiant.
+     * Retourne un objet Element si trouvé, sinon null.
      */
     public function getById(int $id): ?Element
     {

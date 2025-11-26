@@ -3,7 +3,9 @@ $this->layout('template', ['title' => 'Accueil Mihoyo']);
 ?>
 
 <?php
-// ✅ Gestion du message
+/**
+ * Affichage du message global (objet Message ou simple texte)
+ */
 if (isset($message)) {
     if (is_object($message)) {
         echo $this->insert('message', [
@@ -23,14 +25,16 @@ if (isset($message)) {
 
     <?php if (!empty($listPersonnage)): ?>
         <div class="cards-grid">
+
             <?php foreach ($listPersonnage as $p): ?>
                 <div class="card">
-                    <!-- Image -->
+
+                    <!-- Image du personnage -->
                     <div class="card-img">
                         <img src="<?= $this->e($p->getUrlImg()) ?>" alt="<?= $this->e($p->getName()) ?>">
                     </div>
 
-                    <!-- Contenu -->
+                    <!-- Informations du personnage -->
                     <div class="card-content">
                         <h3><?= $this->e($p->getName()) ?></h3>
                         <p>🔥 <strong>Élément :</strong> <?= $this->e($p->getElement()?->getName() ?? 'Inconnu') ?></p>
@@ -39,7 +43,7 @@ if (isset($message)) {
                         <p>⭐ <strong>Rareté :</strong> <?= $this->e($p->getRarity()) ?></p>
                     </div>
 
-                    <!-- Boutons -->
+                    <!-- Boutons de modification -->
                     <div class="btn-group">
                         <a href="index.php?action=update-perso&idPerso=<?= $this->e($p->getId()) ?>" class="btn btn-edit">
                             Modifier
@@ -49,18 +53,23 @@ if (isset($message)) {
                         </a>
                     </div>
 
-                    <!-- Bouton Ajouter / Retirer -->
+                    <!-- Bouton pour ajouter ou retirer de la collection -->
                     <form method="POST"
                           action="index.php?action=<?= in_array($p->getId(), $ownedIds ?? []) ? 'remove-from-collection' : 'add-to-collection' ?>">
+
                         <input type="hidden" name="id_perso" value="<?= $this->e($p->getId()) ?>">
+
                         <button type="submit"
                                 class="<?= in_array($p->getId(), $ownedIds ?? []) ? 'btn-minus' : 'btn-plus' ?>">
                             <?= in_array($p->getId(), $ownedIds ?? []) ? '– Retirer de la collection' : '+ Ajouter à la collection' ?>
                         </button>
                     </form>
+
                 </div>
             <?php endforeach; ?>
+
         </div>
+
     <?php else: ?>
         <p>Aucun personnage disponible.</p>
     <?php endif; ?>

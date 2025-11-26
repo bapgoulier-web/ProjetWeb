@@ -9,13 +9,19 @@ class CollectionController
     private PersonnageDAO $personnageDAO;
     private CollectionDAO $collectionDAO;
 
+    /**
+     * Initialise les DAO nécessaires pour gérer les personnages et la collection utilisateur.
+     */
     public function __construct()
     {
         $this->personnageDAO = new PersonnageDAO();
         $this->collectionDAO = new CollectionDAO();
     }
 
-    // Affiche la page "Collection"
+    /**
+     * Affiche la page de collection pour l'utilisateur connecté.
+     * Vérifie la session, récupère les personnages possédés et les envoie à la vue.
+     */
     public function collection(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -35,7 +41,10 @@ class CollectionController
         ]);
     }
 
-// Ajoute un perso à la collection
+    /**
+     * Ajoute un personnage à la collection de l'utilisateur.
+     * Vérifie l'ID utilisateur et l'ID du personnage puis met à jour la collection.
+     */
     public function addToCollection(array $params): void
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -43,17 +52,20 @@ class CollectionController
         }
 
         $userId = $_SESSION['userUID'] ?? null;
-        $persoId = $params['id_perso'] ?? null; // ✅ clé du formulaire
+        $persoId = $params['id_perso'] ?? null;
 
         if ($userId && $persoId) {
             $this->collectionDAO->addToCollection((int)$userId, $persoId);
         }
 
-        header("Location: index.php?action=index"); // ✅ retour à l’accueil
+        header("Location: index.php?action=index");
         exit;
     }
 
-// Retire un perso de la collection
+    /**
+     * Retire un personnage de la collection de l'utilisateur.
+     * Vérifie l'ID utilisateur et l'ID du personnage puis met à jour la base.
+     */
     public function removeFromCollection(array $params): void
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -67,8 +79,7 @@ class CollectionController
             $this->collectionDAO->removeFromCollection((int)$userId, $persoId);
         }
 
-        header("Location: index.php?action=collection"); // ✅ retour vers la collection
+        header("Location: index.php?action=collection");
         exit;
     }
-
 }

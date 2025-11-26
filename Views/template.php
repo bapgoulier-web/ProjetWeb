@@ -33,9 +33,5 @@
     <?= $this->section('content') ?>
 </main>
 
-<footer>
-    <p>© 2025 - Projet Mihoyo</p>
-</footer>
-
 </body>
 </html>

@@ -1,6 +1,4 @@
-/* ============================================
-   🌌 FOND GLOBAL AVEC AURA HOYOVERSE
-============================================ */
+/* Fond global */
 body {
     background: radial-gradient(circle at top, #121221 0%, #0a0a13 100%);
     font-family: 'Poppins', sans-serif;
@@ -10,7 +8,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Pattern étoilé */
+/* Effet étoilé */
 body::before {
     content: "";
     position: fixed;
@@ -44,9 +42,7 @@ body::after {
     to   { transform: translate(60px, 40px) scale(1.15); }
 }
 
-/* ============================================
-   🏛 CONTAINER PRINCIPAL
-============================================ */
+/* Container principal */
 .container-collection {
     margin: 60px auto;
     max-width: 1400px;
@@ -66,7 +62,7 @@ body::after {
     z-index: 2;
 }
 
-/* Halo de bordure animé (version simplifiée, sans mask) */
+/* Halo animé autour du container */
 .container-collection::before {
     content: "";
     position: absolute;
@@ -90,9 +86,7 @@ body::after {
     100% { opacity: .2; filter: blur(5px); }
 }
 
-/* ============================================
-   🔥 TITRE
-============================================ */
+/* Titre */
 .container-collection h1 {
     font-size: 2.6rem;
     text-align: center;
@@ -125,9 +119,7 @@ body::after {
     box-shadow: 0 0 15px rgba(150,130,255,0.7);
 }
 
-/* ============================================
-   🎴 GRILLE — apparition animée
-============================================ */
+/* Grille */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -144,7 +136,7 @@ body::after {
     100% { opacity: 1; transform: scale(1); filter: blur(0px); }
 }
 
-/* Aura derrière la grille */
+/* Aura sous la grille */
 .cards-grid::before {
     content: "";
     position: absolute;
@@ -159,9 +151,7 @@ body::after {
     pointer-events: none;
 }
 
-/* ============================================
-   ✨ CARTE PERSONNAGE + ANIMATION D'ARRIVÉE
-============================================ */
+/* Carte personnage */
 .card {
     opacity: 0;
     transform: translateY(20px) scale(0.96);
@@ -191,7 +181,7 @@ body::after {
     100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Halo animé */
+/* Halo sur carte */
 .card::before {
     content: "";
     position: absolute;
@@ -215,9 +205,7 @@ body::after {
     border-color: rgba(127, 90, 240, 0.55);
 }
 
-/* ============================================
-   📸 IMAGE
-============================================ */
+/* Image */
 .card img {
     width: 100%;
     border-radius: 14px;
@@ -228,9 +216,7 @@ body::after {
     transform: scale(1.05);
 }
 
-/* ============================================
-   🧾 BADGES RPG
-============================================ */
+/* Badges */
 .badges {
     margin-top: 10px;
 }
@@ -260,9 +246,7 @@ body::after {
     font-size: 1rem;
 }
 
-/* ============================================
-   🧾 NOM DU PERSONNAGE
-============================================ */
+/* Nom du personnage */
 .card h3 {
     color: #c084fc;
     font-size: 1.25rem;
@@ -277,9 +261,7 @@ body::after {
     color: #cccdf5;
 }
 
-/* ============================================
-   🎯 BOUTONS (Modifier / Supprimer)
-============================================ */
+/* Boutons carte */
 .btn-group {
     margin-top: 14px;
     display: flex;
@@ -306,7 +288,7 @@ body::after {
             inset 0 0 6px rgba(255,255,255,0.1);
 }
 
-/* --- Boutons Modifier / Supprimer (style néon compact) --- */
+/* Boutons Modifier / Supprimer */
 .btn-edit,
 .btn-delete {
     display: inline-block;
@@ -326,7 +308,7 @@ body::after {
     box-shadow: 0 0 10px rgba(140,100,255,0.3);
 }
 
-/* --- Bouton Modifier (violet/bleu néon) --- */
+/* Bouton Modifier */
 .btn-edit {
     background: radial-gradient(circle at top left, #6e44ff, #4a00e0);
     border: 1px solid rgba(160,120,255,0.4);
@@ -339,7 +321,7 @@ body::after {
     transform: scale(1.05);
 }
 
-/* --- Bouton Supprimer (rouge néon) --- */
+/* Bouton Supprimer */
 .btn-delete {
     background: radial-gradient(circle at top left, #ff4f6d, #c02030);
     border: 1px solid rgba(255,100,120,0.4);
@@ -352,7 +334,7 @@ body::after {
     transform: scale(1.05);
 }
 
-/* --- Animation subtile d’apparition --- */
+/* Animation fade-in des boutons */
 .btn-edit, .btn-delete {
     animation: fadeIn 0.5s ease-out both;
 }
@@ -362,9 +344,7 @@ body::after {
     to { opacity: 1; transform: translateY(0); }
 }
 
-
-
-/* ===== 🎮 HEADER GAMING NAVBAR ===== */
+/* Header */
 header {
     background: linear-gradient(90deg, #1b1b2f 0%, #23263a 50%, #1b1b2f 100%);
     color: #f0f0f0;
@@ -373,14 +353,14 @@ header {
     justify-content: space-between;
     padding: 15px 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    border-bottom: 2px solid #6b46c1; /* violet lumineux */
+    border-bottom: 2px solid #6b46c1;
     font-family: 'Poppins', sans-serif;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-/* Logo ou titre */
+/* Titre header */
 header h1 {
     font-size: 1.5rem;
     color: #c084fc;
@@ -393,7 +373,7 @@ header h1:hover {
     transform: scale(1.05);
 }
 
-/* Liens de navigation */
+/* Navigation */
 nav {
     display: flex;
     align-items: center;
@@ -427,7 +407,6 @@ nav a:hover::after {
     width: 100%;
 }
 
-/* Icône style gaming (si tu veux en ajouter) */
 nav a i {
     margin-right: 6px;
     color: #00c6ff;
@@ -437,7 +416,7 @@ nav a:hover i {
     color: #7f5af0;
 }
 
-/* Bouton déconnexion style rouge */
+/* Bouton déconnexion */
 nav a.logout {
     color: #ff4d4d;
 }
@@ -445,7 +424,6 @@ nav a.logout:hover {
     color: #ffb4b4;
 }
 
-/* Animation subtile d'apparition */
 header {
     animation: fadeInNav 0.6s ease forwards;
 }
@@ -454,10 +432,7 @@ header {
     to { opacity: 1; transform: translateY(0); }
 }
 
-
-/* ============================================
-   🌈 MESSAGE GLOBAL – STYLE RPG PREMIUM
-============================================ */
+/* Message global */
 .message-container {
     position: relative;
     padding: 18px 22px;
@@ -486,7 +461,7 @@ header {
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Liseré lumineux interne */
+/* Liseré interne */
 .message-container::before {
     content: "";
     position: absolute;
@@ -504,11 +479,7 @@ header {
     opacity: 0.7;
 }
 
-/* ============================================
-   🎉 COULEURS AMÉLIORÉES (succès / erreur / info)
-============================================ */
-
-/* SUCCÈS */
+/* Message succès */
 .message-success {
     border: 1px solid rgba(80,255,160,0.55);
     box-shadow:
@@ -530,7 +501,7 @@ header {
     border-radius: 6px;
 }
 
-/* ERREUR */
+/* Message erreur */
 .message-error {
     border: 1px solid rgba(255,80,80,0.55);
     box-shadow:
@@ -552,7 +523,7 @@ header {
     border-radius: 6px;
 }
 
-/* INFO */
+/* Message info */
 .message-info {
     border: 1px solid rgba(100,180,255,0.55);
     box-shadow:
@@ -574,7 +545,7 @@ header {
     border-radius: 6px;
 }
 
-/* --- Boutons Ajouter / Retirer Collection --- */
+/* Boutons ajouter / retirer */
 .btn-plus,
 .btn-minus {
     display: block;
@@ -593,7 +564,7 @@ header {
     box-shadow: 0 0 12px rgba(150,120,255,0.3);
 }
 
-/* --- Bouton Ajouter (vert néon) --- */
+/* Bouton ajouter */
 .btn-plus {
     background: radial-gradient(circle at top left, #00ff88, #007a4e);
     border: 1px solid rgba(0,255,170,0.4);
@@ -606,7 +577,7 @@ header {
     transform: scale(1.04);
 }
 
-/* --- Bouton Retirer (rouge néon) --- */
+/* Bouton retirer */
 .btn-minus {
     background: radial-gradient(circle at top left, #ff4f6d, #c02030);
     border: 1px solid rgba(255,100,120,0.4);
@@ -619,7 +590,7 @@ header {
     transform: scale(1.04);
 }
 
-/* --- Animation subtile d’apparition --- */
+/* Fade-in */
 .btn-plus, .btn-minus {
     animation: fadeIn 0.5s ease-out both;
 }
@@ -627,6 +598,3 @@ header {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
-
-

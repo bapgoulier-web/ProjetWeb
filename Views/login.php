@@ -3,7 +3,7 @@ $this->layout('template', ['title' => 'Connexion']);
 ?>
 
 <style>
-    /* ===== PAGE CONNEXION – AURA GAMING ===== */
+    /* Page principale de connexion */
     .login-page {
         position: relative;
         min-height: 80vh;
@@ -13,6 +13,7 @@ $this->layout('template', ['title' => 'Connexion']);
         overflow: hidden;
     }
 
+    /* Effets lumineux d'arrière-plan */
     .login-page::before,
     .login-page::after {
         content: "";
@@ -32,12 +33,13 @@ $this->layout('template', ['title' => 'Connexion']);
         animation-delay: -6s;
     }
 
+    /* Animation de déplacement doux pour les halos */
     @keyframes floatAura {
         from { transform: translate(-80px, -40px) scale(1); }
         to   { transform: translate(80px, 40px) scale(1.1); }
     }
 
-    /* ===== CARD ===== */
+    /* Carte principale du formulaire */
     .login-card {
         position: relative;
         background: rgba(20, 20, 40, 0.92);
@@ -55,6 +57,7 @@ $this->layout('template', ['title' => 'Connexion']);
         isolation: isolate;
     }
 
+    /* Bordure animée autour de la carte */
     .login-card::before {
         content: "";
         position: absolute;
@@ -71,6 +74,7 @@ $this->layout('template', ['title' => 'Connexion']);
         animation: rotateBorder 10s linear infinite;
     }
 
+    /* Fond interne de la carte */
     .login-card::after {
         content: "";
         position: absolute;
@@ -82,17 +86,19 @@ $this->layout('template', ['title' => 'Connexion']);
         z-index: -1;
     }
 
+    /* Rotation douce de la bordure lumineuse */
     @keyframes rotateBorder {
         from { transform: rotate(0deg); }
         to   { transform: rotate(360deg); }
     }
 
+    /* Apparition animée de la carte */
     @keyframes cardFloat {
         from { opacity: 0; transform: translateY(22px) scale(0.97); }
         to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* ===== HEADER ===== */
+    /* En-tête du formulaire */
     .login-header {
         display: flex;
         align-items: center;
@@ -100,6 +106,7 @@ $this->layout('template', ['title' => 'Connexion']);
         margin-bottom: 18px;
     }
 
+    /* Icône de connexion */
     .login-icon {
         width: 40px;
         height: 40px;
@@ -112,6 +119,7 @@ $this->layout('template', ['title' => 'Connexion']);
         box-shadow: 0 0 12px rgba(255,180,80,0.9);
     }
 
+    /* Titre et sous-titre */
     .login-header-text h1 {
         margin: 0;
         color: #e6ddff;
@@ -126,6 +134,7 @@ $this->layout('template', ['title' => 'Connexion']);
         opacity: 0.9;
     }
 
+    /* Séparateur décoratif */
     .login-divider {
         height: 1px;
         margin: 14px 0 22px;
@@ -140,9 +149,10 @@ $this->layout('template', ['title' => 'Connexion']);
         opacity: 0.9;
     }
 
-    /* ===== FORM ===== */
+    /* Groupe de champs */
     .login-group { margin-bottom: 18px; }
 
+    /* Label des champs */
     .login-label {
         display: flex;
         align-items: center;
@@ -154,6 +164,7 @@ $this->layout('template', ['title' => 'Connexion']);
         text-shadow: 0 0 6px rgba(200,160,255,0.6);
     }
 
+    /* Input stylisés */
     .login-input-wrapper input {
         width: 100%;
         padding: 11px 12px;
@@ -173,12 +184,14 @@ $this->layout('template', ['title' => 'Connexion']);
         color: rgba(220, 210, 255, 0.4);
     }
 
+    /* Effet focus des champs */
     .login-input-wrapper input:focus {
         background: rgba(255,255,255,0.12);
         box-shadow: 0 0 14px rgba(150,120,255,0.85);
         border-color: rgba(190,160,255,0.95);
     }
 
+    /* Options */
     .login-options {
         margin-top: 4px;
         font-size: 0.82rem;
@@ -186,8 +199,11 @@ $this->layout('template', ['title' => 'Connexion']);
         opacity: 0.9;
     }
 
-    /* ===== BUTTON ===== */
-    .login-submit { text-align: center; margin-top: 24px; }
+    /* Bouton de connexion */
+    .login-submit {
+        text-align: center;
+        margin-top: 24px;
+    }
 
     .login-submit button {
         padding: 11px 46px;
@@ -206,6 +222,7 @@ $this->layout('template', ['title' => 'Connexion']);
         text-transform: uppercase;
     }
 
+    /* Effet hover du bouton */
     .login-submit button:hover {
         transform: translateY(-2px) scale(1.02);
         box-shadow:
@@ -213,6 +230,7 @@ $this->layout('template', ['title' => 'Connexion']);
                 0 0 50px rgba(120,220,255,0.95);
     }
 
+    /* Message d'erreur */
     .login-error {
         margin-top: 18px;
         padding: 9px 11px;
@@ -227,6 +245,7 @@ $this->layout('template', ['title' => 'Connexion']);
         box-shadow: 0 0 10px rgba(255,90,90,0.5);
     }
 
+    /* Adaptation mobile */
     @media (max-width: 600px) {
         .login-card { padding: 26px 20px; margin: 40px 14px; }
         .login-header-text h1 { font-size: 1.6rem; }

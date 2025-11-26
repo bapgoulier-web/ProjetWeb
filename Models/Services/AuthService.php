@@ -7,40 +7,35 @@ use Models\UserDAO;
 class AuthService
 {
     /**
-     * 🔐 Tente de connecter un utilisateur
-     * @param string $username
-     * @param string $password
-     * @return bool True si la connexion réussit, sinon False
+     * Tente de connecter un utilisateur.
+     * Vérifie les identifiants, démarre la session et enregistre les informations utilisateur.
+     *
+     * @return bool Retourne true si la connexion réussit, sinon false.
      */
     public static function login(string $username, string $password): bool
     {
-        // ✅ Démarre la session uniquement si elle n'est pas déjà active
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // 1️⃣ Récupération du user
         $dao = new UserDAO();
         $user = $dao->getByUsername($username);
 
-        // 2️⃣ Vérification du mot de passe
         if ($user && password_verify($password, $user->getHashPwd())) {
-
-            // 3️⃣ Création des variables de session
             $_SESSION['userUID'] = $user->getId();
             $_SESSION['username'] = $user->getUsername();
             $_SESSION['login_time'] = time();
-            $_SESSION['timeout'] = 3600; // ⏱ durée de session (1h ici)
+            $_SESSION['timeout'] = 3600;
 
             return true;
         }
 
-        // ❌ Identifiants invalides
         return false;
     }
 
     /**
-     * Vérifie si un utilisateur est connecté
+     * Vérifie si un utilisateur est authentifié.
+     * Contrôle le timeout et déconnecte automatiquement si expiré.
      */
     public static function isAuthenticated(): bool
     {
@@ -49,11 +44,9 @@ class AuthService
         }
 
         if (isset($_SESSION['userUID']) && isset($_SESSION['login_time'])) {
-            // Vérifie le timeout
             if ((time() - $_SESSION['login_time']) < $_SESSION['timeout']) {
                 return true;
             } else {
-                // Déconnexion automatique si timeout dépassé
                 self::logout();
             }
         }
@@ -62,7 +55,8 @@ class AuthService
     }
 
     /**
-     * Déconnecte proprement l’utilisateur
+     * Déconnecte proprement l’utilisateur.
+     * Vide et détruit la session active.
      */
     public static function logout(): void
     {

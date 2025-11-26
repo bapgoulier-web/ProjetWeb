@@ -17,16 +17,24 @@ use Controllers\Router\Route\RouteCollection;
 use Controllers\Router\Route\RouteAddToCollection;
 use Controllers\Router\Route\RouteRemoveFromCollection;
 
-
 /**
- * Classe Router : gère les routes et leur exécution
+ * Gère l’enregistrement des routes et leur exécution.
+ * Analyse l'action demandée et redirige vers la route correspondante.
  */
 class Router
 {
+    /** @var array Liste des routes disponibles */
     private array $routeList;
+
+    /** @var array Liste des contrôleurs instanciés */
     private array $ctrlList;
+
+    /** @var string Nom du paramètre GET contenant l'action */
     private string $actionKey;
 
+    /**
+     * Initialise le routeur et prépare les listes de contrôleurs/routes.
+     */
     public function __construct(string $name_of_action_key = 'action')
     {
         $this->actionKey = $name_of_action_key;
@@ -35,7 +43,7 @@ class Router
     }
 
     /**
-     * Liste des contrôleurs disponibles
+     * Crée la liste des contrôleurs utilisés dans l'application.
      */
     private function createControllerList(): void
     {
@@ -48,7 +56,7 @@ class Router
     }
 
     /**
-     * Liste des routes disponibles
+     * Associe chaque action à la route correspondante.
      */
     private function createRouteList(): void
     {
@@ -64,31 +72,28 @@ class Router
             "add-to-collection" => new RouteAddToCollection("add-to-collection", $this->ctrlList["collec"]),
             "remove-from-collection" => new RouteRemoveFromCollection("remove-from-collection", $this->ctrlList["collec"]),
             "collection"        => new RouteCollection("collection", $this->ctrlList["collec"]),
-
         ];
     }
 
     /**
-     * Fonction principale du routeur
+     * Sélectionne et exécute la route correspondant à l'action demandée.
+     *
+     * @param array $get  Paramètres GET
+     * @param array $post Paramètres POST
      */
     public function routing(array $get, array $post): void
     {
-        // 🧭 Récupération de l’action
         $action = $get[$this->actionKey] ?? "index";
-
-        // 🔍 Récupération de la route correspondante
         $route = $this->routeList[$action] ?? $this->routeList["index"];
-
-        // 🧠 Détermination du type de requête
         $method = $_SERVER['REQUEST_METHOD'];
 
         try {
-            // 🛡️ Vérifie si la route est protégée
+            // Vérification d'accès pour les routes protégées
             if (method_exists($route, 'isRouteProtected') && $route->isRouteProtected()) {
-                $route->protectRoute(); // appelle la méthode de sécurité
+                $route->protectRoute();
             }
 
-            // 🏁 Appel de la bonne méthode (GET ou POST)
+            // Exécution de la méthode GET ou POST
             if (!empty($post)) {
                 $route->action($post, "POST");
             } else {
@@ -96,12 +101,10 @@ class Router
             }
 
         } catch (\Exception $e) {
-            // 🚫 Gestion de l’accès interdit
+            // Redirection en cas d'accès refusé
             $message = urlencode("⚠️ Accès refusé : " . $e->getMessage());
             header("Location: index.php?action=login&message=$message");
             exit;
         }
     }
-
-
 }

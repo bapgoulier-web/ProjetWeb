@@ -7,6 +7,11 @@ require_once 'Origin.php';
 
 class OriginDAO extends BasePdoDAO
 {
+    /**
+     * Récupère toutes les origines depuis la base de données.
+     *
+     * @return array Liste des objets Origin.
+     */
     public function getAll(): array
     {
         $sql = "SELECT * FROM ORIGIN";
@@ -23,6 +28,12 @@ class OriginDAO extends BasePdoDAO
         return $origins;
     }
 
+    /**
+     * Retourne une origine spécifique selon son identifiant.
+     *
+     * @param int $id Identifiant de l’origine.
+     * @return Origin|null Objet Origin si trouvé, sinon null.
+     */
     public function getById(int $id): ?Origin
     {
         $sql = "SELECT * FROM ORIGIN WHERE id = :id";

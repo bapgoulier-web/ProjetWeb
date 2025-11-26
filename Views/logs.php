@@ -1,7 +1,7 @@
 <?php $this->layout('template', ['title' => 'Journal des actions']) ?>
 
 <style>
-    /* ==== PAGE AURA ==== */
+    /* Page principale */
     .logs-page {
         position: relative;
         min-height: 85vh;
@@ -35,7 +35,7 @@
         to   { transform: translate(80px, 40px) scale(1.1); }
     }
 
-    /* ====== CARD PRINCIPALE ====== */
+    /* Carte contenant les logs */
     .logs-card {
         width: 95%;
         max-width: 1300px;
@@ -81,7 +81,7 @@
         to   { transform: rotate(360deg); }
     }
 
-    /* ====== TITRE ====== */
+    /* En-tête du bloc */
     .logs-header {
         display: flex;
         align-items: center;
@@ -104,7 +104,7 @@
         font-size: 2rem;
     }
 
-    /* Ligne décorative */
+    /* Ligne de séparation */
     .logs-divider {
         height: 2px;
         background: linear-gradient(90deg,
@@ -119,7 +119,7 @@
         box-shadow: 0 0 12px rgba(140,110,255,0.7);
     }
 
-    /* ===== SELECT ===== */
+    /* Sélecteur de fichiers */
     .logs-select form {
         margin-bottom: 22px;
     }
@@ -155,7 +155,7 @@
         box-shadow: 0 0 12px rgba(160,130,255,0.8);
     }
 
-    /* ====== LOGS BLOCK ====== */
+    /* Zone d’affichage des logs */
     .logs-output {
         margin-top: 10px;
     }
@@ -176,7 +176,7 @@
         line-height: 1.45em;
     }
 
-    /* ===== FOOTER ===== */
+    /* Pied de page */
     .logs-footer {
         margin-top: 22px;
         text-align: center;
@@ -191,7 +191,7 @@
 
     <div class="logs-card">
 
-        <!-- HEADER -->
+        <!-- En-tête du journal -->
         <div class="logs-header">
             <div class="logs-icon">📰</div>
             <h1>Journal des actions</h1>
@@ -199,7 +199,7 @@
 
         <div class="logs-divider"></div>
 
-        <!-- SELECT FICHIER -->
+        <!-- Sélecteur -->
         <div class="logs-select">
             <form method="get" action="index.php">
                 <input type="hidden" name="action" value="logs">
@@ -216,7 +216,7 @@
             </form>
         </div>
 
-        <!-- LOGS CONTENT -->
+        <!-- Affichage du contenu -->
         <div class="logs-output">
             <?php if ($content): ?>
                 <pre><?= $this->e($content) ?></pre>

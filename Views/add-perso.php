@@ -12,6 +12,7 @@ $this->layout('template', [
 
 
 <style>
+    /* Conteneur principal du formulaire */
     .form-container {
         background: rgba(30, 30, 50, 0.8);
         padding: 30px;
@@ -29,6 +30,7 @@ $this->layout('template', [
         to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Titre du formulaire */
     .form-container h1 {
         text-align: center;
         color: #c9baff;
@@ -38,6 +40,7 @@ $this->layout('template', [
         letter-spacing: 1px;
     }
 
+    /* Groupes de champs */
     .form-group {
         margin-bottom: 18px;
     }
@@ -50,6 +53,7 @@ $this->layout('template', [
         text-shadow: 0 0 6px rgba(200,160,255,0.5);
     }
 
+    /* Champs du formulaire */
     .form-group input,
     .form-group select {
         width: 100%;
@@ -83,6 +87,7 @@ $this->layout('template', [
         background: rgba(255, 255, 255, 0.12);
     }
 
+    /* Aperçu de l'image */
     .preview-image {
         text-align: center;
         margin-top: 15px;
@@ -94,6 +99,7 @@ $this->layout('template', [
         box-shadow: 0 0 12px rgba(150,120,255,0.6);
     }
 
+    /* Zone du bouton */
     .form-submit {
         text-align: center;
         margin-top: 25px;

@@ -1,6 +1,5 @@
 <?php
-
-
+//Je n'utilise pas cette route j'ai deja ELement et Personnage.
 namespace Controllers\Router\Route;
 
 use Controllers\Router\Route;
@@ -14,6 +13,9 @@ class RouteAddAttribute extends Route
     private ElementController $elementController;
     private UnitClassController $unitClassController;
 
+    /**
+     * Initialise la route et instancie les contrôleurs nécessaires.
+     */
     public function __construct(string $action)
     {
         parent::__construct($action);
@@ -22,11 +24,18 @@ class RouteAddAttribute extends Route
         $this->unitClassController = new UnitClassController();
     }
 
+    /**
+     * Affiche le formulaire d'ajout d'origine (interface par défaut).
+     */
     public function get(array $params = []): void
     {
         $this->originController->displayAddOrigin();
     }
 
+    /**
+     * Traite l'ajout d'un attribut (origine, élément ou classe).
+     * Récupère le type, hydrate les données et appelle le bon contrôleur.
+     */
     public function post(array $params = []): void
     {
         try {

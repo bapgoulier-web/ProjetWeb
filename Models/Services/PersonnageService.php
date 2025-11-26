@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Models\Services;
 
 use Models\ElementDAO;
@@ -16,6 +15,9 @@ class PersonnageService
     private ElementDAO $elementDAO;
     private UnitClassDAO $unitClassDAO;
 
+    /**
+     * Initialise les DAO nécessaires au service.
+     */
     public function __construct()
     {
         $this->personnageDAO = new PersonnageDAO();
@@ -24,18 +26,21 @@ class PersonnageService
         $this->unitClassDAO = new UnitClassDAO();
     }
 
+    /**
+     * Récupère tous les personnages complets (avec leurs attributs associés).
+     *
+     * @return array Liste des objets Personnage entièrement hydratés.
+     */
     public function getAllPerso(): array
     {
-        $persosData = $this->personnageDAO->getAll(); // récupère toutes les lignes brutes
+        $persosData = $this->personnageDAO->getAll();
         $persos = [];
 
         foreach ($persosData as $data) {
-            // Récupération des objets associés
             $element = $this->elementDAO->getById($data['element']);
             $origin = $this->originDAO->getById($data['origin']);
             $unitclass = $this->unitClassDAO->getById($data['unitclass']);
 
-            // Création du personnage complet
             $perso = new Personnage();
             $perso->setId($data['id']);
             $perso->setName($data['name']);
@@ -51,10 +56,15 @@ class PersonnageService
         return $persos;
     }
 
+    /**
+     * Récupère la collection d'un utilisateur.
+     *
+     * @param string $userId ID unique de l'utilisateur.
+     * @return array Liste des personnages possédés.
+     */
     public function getCollectionByUser(string $userId): array
     {
         $dao = new \Models\PersonnageDAO();
         return $dao->getByUserId($userId);
     }
-
 }

@@ -18,6 +18,9 @@ class PersoController
     private PersonnageDAO $personnageDAO;
     private CollectionDAO $collectionDAO;
 
+    /**
+     * Initialise le moteur de templates et les DAO nécessaires.
+     */
     public function __construct()
     {
         $this->templates = new Engine('Views');
@@ -26,7 +29,8 @@ class PersoController
     }
 
     /**
-     * 🏠 Affiche la page Accueil avec les boutons + / –
+     * Affiche la page d’accueil avec la liste des personnages
+     * et ceux appartenant à l’utilisateur connecté.
      */
     public function accueil(): void
     {
@@ -43,11 +47,12 @@ class PersoController
     }
 
     /**
-     * ➕ Ajoute un personnage dans la collection de l'utilisateur
+     * Ajoute un personnage dans la collection de l’utilisateur.
      */
     public function addToCollection(string $persoId): void
     {
         if (session_status() === PHP_SESSION_NONE) session_start();
+
         if (!isset($_SESSION['userUID'])) {
             header("Location: index.php?action=login");
             exit;
@@ -55,16 +60,18 @@ class PersoController
 
         $userId = $_SESSION['userUID'];
         $this->collectionDAO->addToCollection($userId, $persoId);
+
         header("Location: index.php?action=accueil");
         exit;
     }
 
     /**
-     * ➖ Retire un personnage de la collection de l'utilisateur
+     * Retire un personnage de la collection de l’utilisateur.
      */
     public function removeFromCollection(string $persoId): void
     {
         if (session_status() === PHP_SESSION_NONE) session_start();
+
         if (!isset($_SESSION['userUID'])) {
             header("Location: index.php?action=login");
             exit;
@@ -72,12 +79,13 @@ class PersoController
 
         $userId = $_SESSION['userUID'];
         $this->collectionDAO->removeFromCollection($userId, $persoId);
+
         header("Location: index.php?action=accueil");
         exit;
     }
 
     /**
-     * ➕ Affiche le formulaire d’ajout d’un personnage
+     * Affiche le formulaire d’ajout de personnage.
      */
     public function displayAddPerso(?string $message = null): void
     {
@@ -94,7 +102,8 @@ class PersoController
     }
 
     /**
-     * ➕ Ajoute un nouveau personnage
+     * Traite la création d’un nouveau personnage
+     * et écrit l’opération dans les logs.
      */
     public function addPerso(array $data): void
     {
@@ -102,6 +111,7 @@ class PersoController
 
         try {
             $data['id'] = uniqid();
+
             $element = (new ElementDAO())->getById($data['element']);
             $unitclass = (new UnitClassDAO())->getById($data['unitclass']);
             $origin = !empty($data['origin']) ? (new OriginDAO())->getById($data['origin']) : null;
@@ -120,6 +130,7 @@ class PersoController
 
             header("Location: index.php?action=accueil");
             exit;
+
         } catch (\Exception $e) {
             $logger->log("ERROR", "Erreur d'ajout : " . $e->getMessage());
             $this->displayAddPerso("⚠️ " . $e->getMessage());
@@ -127,9 +138,9 @@ class PersoController
     }
 
     /**
-     * ✏️ Prépare la modification d’un personnage
+     * Affiche la page d’édition d’un personnage existant.
      */
-    public function displayEditPerso(string $idPerso = null): void
+    public function displayEditPerso(?string $idPerso = null): void
     {
         $daoPerso = new PersonnageDAO();
         $daoElement = new ElementDAO();
@@ -149,7 +160,8 @@ class PersoController
     }
 
     /**
-     * 🧱 Met à jour un personnage
+     * Met à jour un personnage existant
+     * puis retourne à l’accueil.
      */
     public function editPersoAndIndex(array $data): void
     {
@@ -174,6 +186,7 @@ class PersoController
 
             header("Location: index.php?action=accueil");
             exit;
+
         } catch (\Exception $e) {
             $logger->log("ERROR", "Erreur de mise à jour : " . $e->getMessage());
             $this->displayEditPerso("⚠️ " . $e->getMessage());
@@ -181,7 +194,8 @@ class PersoController
     }
 
     /**
-     * 🗑️ Supprime un personnage
+     * Supprime un personnage par son ID
+     * puis retourne à l’accueil.
      */
     public function deletePersoAndIndex(?string $idPerso = null): void
     {
@@ -198,9 +212,11 @@ class PersoController
         exit;
     }
 
+    /**
+     * Affiche le formulaire d’ajout d’un élément.
+     */
     public function displayAddElement(): void
     {
         echo $this->templates->render('add-perso-element');
     }
-
 }

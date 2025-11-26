@@ -115,7 +115,6 @@ class PersonnageDAO extends BasePDODAO
         $personnage->setRarity($row['rarity']);
         $personnage->setUrlImg($row['url_img'] ?? null);
 
-        // Si tu as des clés étrangères vers élément, classe, origine :
         if (isset($row['id_element'])) {
             $elementDAO = new \Models\ElementDAO();
             $personnage->setElement($elementDAO->getById($row['id_element']));

@@ -43,28 +43,11 @@ if (isset($message)) {
                         <div class="badge"><i>⭐</i> Rareté : <?= $this->e($p->getRarity()) ?></div>
                     </div>
 
-                    <!-- BOUTONS EDIT / DELETE -->
-                    <div class="btn-group">
-                        <a href="index.php?action=update-perso&idPerso=<?= $this->e($p->getId()) ?>"
-                           class="btn btn-edit">
-                            ✏️ Modifier
-                        </a>
-
-                        <a href="index.php?action=del-perso&idPerso=<?= $this->e($p->getId()) ?>"
-                           class="btn btn-delete">
-                            🗑️ Supprimer
-                        </a>
-                    </div>
-
-                    <!-- BOUTON COLLECTION (+ / -) -->
-                    <form method="POST"
-                          action="index.php?action=<?= in_array($p->getId(), $ownedIds ?? []) ? 'remove-from-collection' : 'add-to-collection' ?>">
-
+                    <!-- Bouton Retirer uniquement -->
+                    <form method="POST" action="index.php?action=remove-from-collection">
                         <input type="hidden" name="id_perso" value="<?= $this->e($p->getId()) ?>">
-
-                        <button type="submit"
-                                class="<?= in_array($p->getId(), $ownedIds ?? []) ? 'btn-minus' : 'btn-plus' ?>">
-                            <?= in_array($p->getId(), $ownedIds ?? []) ? '– Retirer de la collection' : '+ Ajouter à la collection' ?>
+                        <button type="submit" class="btn-minus">
+                            – Retirer de la collection
                         </button>
                     </form>
 

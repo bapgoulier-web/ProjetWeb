@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Controllers;
 
 use League\Plates\Engine;
@@ -11,11 +10,18 @@ class ElementController
 {
     private Engine $templates;
 
+    /**
+     * Initialise le moteur de templates Plates.
+     */
     public function __construct()
     {
         $this->templates = new Engine('Views');
     }
 
+    /**
+     * Ajoute un élément en utilisant les données reçues,
+     * hydrate l'objet, appelle le DAO puis renvoie vers l'accueil.
+     */
     public function addElement(array $data): void
     {
         $dao = new ElementDAO();

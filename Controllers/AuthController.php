@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Controllers;
 
 use Models\UserDAO;
@@ -15,16 +14,19 @@ class AuthController
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-
     }
 
-    // 🔹 Affiche le formulaire de login
+    /**
+     * Affiche la page de connexion avec un éventuel message.
+     */
     public function displayLogin(?string $message = null): void
     {
         echo $this->templates->render('login', ['message' => $message]);
     }
 
-    // 🔹 Vérifie les identifiants
+    /**
+     * Vérifie les identifiants fournis et connecte l'utilisateur si valides.
+     */
     public function login(array $params): void
     {
         $username = $params['username'] ?? '';
@@ -38,8 +40,9 @@ class AuthController
         }
     }
 
-
-    // 🔹 Page protégée
+    /**
+     * Affiche une page protégée, accessible uniquement si l’utilisateur est connecté.
+     */
     public function displayProtected(): void
     {
         if (!isset($_SESSION['user'])) {
@@ -50,7 +53,9 @@ class AuthController
         echo $this->templates->render('protected');
     }
 
-    // 🔹 Déconnexion
+    /**
+     * Déconnecte l’utilisateur et redirige vers la page de login.
+     */
     public function logout(): void
     {
         \Models\Services\AuthService::logout();
