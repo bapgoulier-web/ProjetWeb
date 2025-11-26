@@ -1,21 +1,20 @@
 <?php
 require_once 'Helpers/Psr4AutoloaderClass.php';
 
-// Initialisation de l’autoloader
 $loader = new Helpers\Psr4AutoloaderClass();
 $loader->register();
 
-// Enregistrement des namespaces
+// Namespaces
 $loader->addNamespace('Helpers', 'Helpers');
 $loader->addNamespace('Controllers', 'Controllers');
 $loader->addNamespace('Models', 'Models');
-$loader->addNamespace('League\Plates', 'Vendor/Plates/Plates/src');
 $loader->addNamespace('Config', 'Config');
+$loader->addNamespace('League\Plates', 'Vendor/Plates/Plates/src');
+$loader->addNamespace('Controllers\Router', 'Controllers/Router');
+$loader->addNamespace('Controllers\Router\Route', 'Controllers/Router/Route');
 
+use Controllers\Router\Router;
 
-use Controllers\MainController; // 🔹 On importe notre contrôleur
-// Création du contrôleur principal
-$controller = new MainController();
-
-// Appel de la méthode index() → affichera la page home
-$controller->index();
+// Création et exécution du routeur
+$router = new Router();
+$router->routing($_GET, $_POST);
